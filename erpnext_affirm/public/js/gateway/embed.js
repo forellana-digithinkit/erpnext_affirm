@@ -1,6 +1,5 @@
 /* global cart:false frappe:false */
-
-frappe.provide("frappe.gateway_selector")
+frappe.provide("frappe.gateway_selector");
 
 frappe.gateway_selector.affirm_embed = frappe.gateway_selector._generic_embed.extend({
     init: function (addressForm, formData) {
@@ -66,7 +65,9 @@ frappe.gateway_selector.affirm_embed = frappe.gateway_selector._generic_embed.ex
 
             // copy address for awc
             for (var key in this.process_data.billing_info) {
-                address[key] = this.process_data.billing_info[key]
+                if ({}.hasOwnProperty.call(this.process_data.billing_info, key)) {
+                    address[key] = this.process_data.billing_info[key];
+                }
             }
         } else {
             valid = false;
